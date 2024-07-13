@@ -4,10 +4,18 @@ const API_KEY =
   'live_neQtqXeixoBIqFwhroHRrrmvwrqyAqKNlOtw1h0pUptDaBOy2lz9kT2qr4tKfpji';
 
 async function getBreeds() {
-  const breeds = await fetch(
-    `https://api.thecatapi.com/v1/breeds?api_key=${API_KEY}`
-  );
-  return await breeds.json();
+  try {
+    const breeds = await fetch(
+        `https://api.thecatapi.com/v1/breeds?api_key=${API_KEY}`
+      );
+      return await breeds.json();
+  } catch (error) {
+    console.log(error);
+    Notiflix.Notify.failure(
+        'Oops! Something went wrong! Try reloading the page!'
+      );
+  }
+  
 }
 
 async function getCat(id) {
